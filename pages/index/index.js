@@ -1,0 +1,140 @@
+Page({
+
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    // 被点击首页导航的菜单索引
+    currentIndexNav:0,
+    // 首页导航数据
+    navList:[],
+    // 轮播图数据
+    swiperList:[],
+    // 视频列表数据
+    videosList:[]
+  },
+
+  /**
+   * 获取首页导航数据
+   */
+  getNavList(){
+    let that =this;
+    // 请求数据
+    wx.request({
+      url:"https://www.easy-mock.com/mock/5d44048721bb1e01b2398cf3/bili/navList",
+      success(res){
+        console.log(res);
+        if(res.data.code===0){
+          that.setData({
+            navList:res.data.data.navList
+          })
+        }
+      }
+    })
+  },
+
+  // 点击首页导航事件
+  activeNav(e){
+    // console.log(123);
+    this.setData({
+      currentIndexNav:e.target.dataset.index
+    })
+  },
+
+  /**
+   * 获取轮播图数据
+   */
+  getSwiperList(){
+    let that = this;
+    wx.request({
+      url:"https://www.easy-mock.com/mock/5d44048721bb1e01b2398cf3/bili/swiperList",
+      success(res){
+        // console.log(res)
+        if(res.data.code===0){
+          that.setData({
+            swiperList:res.data.data.swiperList
+          })
+        }
+      }
+    })
+  },
+
+  /**
+   * 获取视频列表
+   */
+  getVideosList(){
+    let that = this;
+    wx.request({
+      url:"https://www.easy-mock.com/mock/5d44048721bb1e01b2398cf3/bili/videosList",
+      success(res){
+        // console.log(res)
+        if(res.data.code===0){
+          that.setData({
+            videosList:res.data.data.videosList
+          })
+        }
+      }
+    })
+  },
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    // 获取nav数据
+    this.getNavList();
+    // 获取轮播图数据
+    this.getSwiperList();
+    // 获取视频数据
+    this.getVideosList();
+  },
+
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
+    
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+    
+  },
+
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide: function () {
+    
+  },
+
+  /**
+   * 生命周期函数--监听页面卸载
+   */
+  onUnload: function () {
+    
+  },
+
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function () {
+    
+  },
+
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function () {
+    
+  },
+
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+    
+  }
+})
